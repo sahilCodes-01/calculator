@@ -1,6 +1,3 @@
-let firstNumber = null
-let oprator = null
-let secondNumber = null
 
 
 function add(a, b) {
@@ -20,26 +17,47 @@ function divide(a, b) {
     }
     return a / b;
 }
+function operate(firstNumber, oprator, secondNumber) {
 
-// let oper = function operate(firstNumber, oprator, secondNumber) {
+    switch (oprator) {
+        case "+":
+            return add(firstNumber, secondNumber);
 
-//     switch (firstNumber, oprator, secondNumber) {
-//         case "+":
-//             add();
-//             break;
 
-//         case "-":
-//             subtract();
-//             break;
 
-//         case "*":
-//             multiply();
-//             break;
+        case "-":
+            return subtract(firstNumber, secondNumber);
 
-//         case "/":
-//             divide();
-//             break;
-//     }
-// return operate
-// }
 
+        case "*":
+            return multiply(firstNumber, secondNumber);
+
+
+        case "/":
+            return divide(firstNumber, secondNumber);
+
+
+        default:
+            return "invalid operator"
+    }
+}
+
+
+const digit = document.querySelectorAll(".digit")
+const symbol = document.querySelectorAll(".operator")
+const clear = document.querySelector(".clearbtn")
+const equal = document.querySelector("#equalbtn")
+const valueDisplay = document.querySelector(".display")
+
+
+let currentNumber = "";
+
+
+digit.forEach(currentButton => {
+    currentButton.addEventListener("click", (event) => {
+        let currentValue = event.target.textContent
+        currentNumber = currentNumber + currentValue
+
+        valueDisplay.textContent = currentNumber;
+    });
+});
