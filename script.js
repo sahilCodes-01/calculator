@@ -20,6 +20,8 @@ function divide(a, b) {
     }
     return a / b;
 }
+
+
 function operate(firstNumber, oprator, secondNumber) {
 
     switch (oprator) {
@@ -31,11 +33,11 @@ function operate(firstNumber, oprator, secondNumber) {
             return subtract(firstNumber, secondNumber);
 
 
-        case "*":
+        case "×":
             return multiply(firstNumber, secondNumber);
 
 
-        case "/":
+        case "÷":
             return divide(firstNumber, secondNumber);
 
 
@@ -67,7 +69,7 @@ digit.forEach(currentButton => {
 symbol.forEach(currentOperator => {
     currentOperator.addEventListener("click", (event) => {
         let currentValue = event.target.textContent
-       
+
         oprator = currentValue
         firstNumber = currentNumber
         valueDisplay.textContent = currentValue
@@ -76,8 +78,21 @@ symbol.forEach(currentOperator => {
     });
 });
 
-// equal.addEventListener("click" , (event) =>{
-//      let currentValue = event.target.textContent
-//     secondNumber = currentNumber
-// })
+equal.addEventListener("click", (event) => {
+    secondNumber = currentNumber
+
+    firstNumber = Number(firstNumber)
+    secondNumber = Number(secondNumber)
+
+
+    let result = ""
+    result = operate(firstNumber, oprator, secondNumber);
+
+    valueDisplay.textContent = result
+
+    currentNumber = result
+    firstNumber = ""
+    oprator = ""
+
+});
 
