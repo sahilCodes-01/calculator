@@ -1,3 +1,6 @@
+firstNumber = "";
+oprator = "";
+secondNumber = "";
 
 
 function add(a, b) {
@@ -22,7 +25,6 @@ function operate(firstNumber, oprator, secondNumber) {
     switch (oprator) {
         case "+":
             return add(firstNumber, secondNumber);
-
 
 
         case "-":
@@ -52,12 +54,30 @@ const valueDisplay = document.querySelector(".display")
 
 let currentNumber = "";
 
-
 digit.forEach(currentButton => {
     currentButton.addEventListener("click", (event) => {
         let currentValue = event.target.textContent
         currentNumber = currentNumber + currentValue
-
         valueDisplay.textContent = currentNumber;
     });
 });
+
+
+
+symbol.forEach(currentOperator => {
+    currentOperator.addEventListener("click", (event) => {
+        let currentValue = event.target.textContent
+       
+        oprator = currentValue
+        firstNumber = currentNumber
+        valueDisplay.textContent = currentValue
+        currentNumber = ""
+
+    });
+});
+
+// equal.addEventListener("click" , (event) =>{
+//      let currentValue = event.target.textContent
+//     secondNumber = currentNumber
+// })
+
