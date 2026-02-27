@@ -48,7 +48,7 @@ function operate(firstNumber, oprator, secondNumber) {
 
 
 const digit = document.querySelectorAll(".digit")
-const symbol = document.querySelectorAll(".operator")
+const btnOperator = document.querySelectorAll(".operator")
 const clear = document.querySelector(".clearbtn")
 const equal = document.querySelector("#equalbtn")
 const valueDisplay = document.querySelector(".display")
@@ -66,12 +66,24 @@ digit.forEach(currentButton => {
 
 
 
-symbol.forEach(currentOperator => {
+btnOperator.forEach(currentOperator => {
     currentOperator.addEventListener("click", (event) => {
+        secondNumber = currentNumber
         let currentValue = event.target.textContent
 
+        if (currentNumber === "") {
+            oprator = currentValue
+            valueDisplay.textContent = currentValue
+            return
+
+        }
+
+        if (firstNumber && oprator && currentNumber) {
+            secondNumber = operate(firstNumber, oprator, currentNumber);
+        }
+
+        firstNumber = secondNumber
         oprator = currentValue
-        firstNumber = currentNumber
         valueDisplay.textContent = currentValue
         currentNumber = ""
 
