@@ -1,0 +1,52 @@
+*body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    flex-direction: column;
+
+}
+
+
+.main {
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 174px;
+    align-items: center;
+    gap: 6px;
+}
+
+.main button {
+    width: 39px;
+    font-size: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: aquamarine;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.display {
+    width: 171px;
+    font-size: 20px;
+
+}
+
+.main #add {
+    height: 40px;
+}
+
+#equalbtn {
+    width: 83px;
+}

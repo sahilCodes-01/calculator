@@ -12,6 +12,18 @@ function resetCalculator() {
     currentNumber = "";
 }
 
+
+function handleDigit(value) {
+
+    if (resultDisplayed) {
+        currentNumber = "";
+        resultDisplayed = false;
+    }
+
+    currentNumber += value;
+    valueDisplay.textContent = currentNumber;
+}
+
 function add(a, b) {
     return a + b;
 };
@@ -67,19 +79,17 @@ const btnOperator = document.querySelectorAll(".operator");
 const clear = document.querySelector(".clearbtn");
 const equal = document.querySelector("#equalbtn");
 const valueDisplay = document.querySelector(".display");
+const decimalBtn = document.querySelector(".decimal")
+const backSpace = document.querySelector(".backspace")
+
+
 
 
 
 
 digit.forEach(currentButton => {
     currentButton.addEventListener("click", (event) => {
-        let currentValue = event.target.textContent
-        if (resultDisplayed) {
-            currentNumber = ""
-            resultDisplayed = false;
-        }
-        currentNumber = currentNumber + currentValue
-        valueDisplay.textContent = currentNumber;
+        handleDigit(event.target.textContent)
     });
 });
 
@@ -88,6 +98,7 @@ btnOperator.forEach(currentOperator => {
     currentOperator.addEventListener("click", (event) => {
         secondNumber = currentNumber
         let currentValue = event.target.textContent
+
 
         if (currentNumber === "") {
             oprator = currentValue
@@ -100,10 +111,10 @@ btnOperator.forEach(currentOperator => {
             secondNumber = operate(firstNumber, oprator, currentNumber);
         };
 
+
         firstNumber = secondNumber
         oprator = currentValue
         valueDisplay.textContent = firstNumber
-
         currentNumber = ""
 
     });
@@ -139,3 +150,40 @@ clear.addEventListener("click", (event) => {
     valueDisplay.textContent = "0";
 });
 
+backSpace.addEventListener("click", (event) => {
+    currentNumber = currentNumber.slice(0, -1);
+    valueDisplay.textContent = currentNumber || "0"
+})
+
+decimalBtn.addEventListener("click", (event) => {
+
+
+    if (resultDisplayed) {
+        currentNumber = "";
+        resultDisplayed = false;
+    };
+
+    if (currentNumber.includes(".")) return;
+
+    if (currentNumber === "") {
+        currentNumber = "0.";
+    }
+
+    else {
+        currentNumber += "."
+
+    };
+
+    valueDisplay.textContent = currentNumber;
+});
+
+
+document.addEventListener("keydown", (event) => {
+
+    if (!isNaN(event.key)) {
+        handleDigit(event.key)
+    }
+    // if (event.key === "Enter" || event.key === "=") {
+    //     equal.click();
+    // }
+})
